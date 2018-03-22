@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace HapCss.UnitTests
 {
-    [TestClass]
+    [TestFixture]
     public class Html1
     {
         static HtmlAgilityPack.HtmlDocument doc = LoadHtml();
 
-        [TestMethod]
+        [Test]
         public void IdSelectorMustReturnOnlyFirstElement()
         {
             var elements = doc.QuerySelectorAll("#myDiv");
@@ -19,7 +19,7 @@ namespace HapCss.UnitTests
             Assert.IsTrue(elements[0].Attributes["first"].Value == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void GetElementsByAttribute()
         {
             var elements = doc.QuerySelectorAll("*[id=myDiv]");
@@ -29,7 +29,7 @@ namespace HapCss.UnitTests
                 Assert.IsTrue(elements[i].Id == "myDiv");
         }
 
-        [TestMethod]
+        [Test]
         public void GetElementsByClassName1()
         {
             var elements1 = doc.QuerySelectorAll(".cls-a");
@@ -40,7 +40,7 @@ namespace HapCss.UnitTests
                 Assert.IsTrue(elements1[i] == elements2[i]);
         }
 
-		[TestMethod]
+		[Test]
         public void GetElementsByClassName_MultiClasses()
         {
             var elements = doc.QuerySelectorAll(".cls-a, .cls-b");
@@ -50,7 +50,7 @@ namespace HapCss.UnitTests
             Assert.IsTrue(elements[1].Id == "spanB");
         }
 
-		[TestMethod]
+		[Test]
         public void GetElementsByClassName_WithUnderscore()
         {
             var elements = doc.QuerySelectorAll(".underscore_class");
@@ -59,8 +59,6 @@ namespace HapCss.UnitTests
             Assert.IsTrue(elements[0].Id == "spanB");
         }
 
-
-
         private static HtmlAgilityPack.HtmlDocument LoadHtml()
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
@@ -68,6 +66,5 @@ namespace HapCss.UnitTests
 
             return doc;
         }
-
     }
 }
