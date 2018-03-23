@@ -59,6 +59,15 @@ namespace HapCss.UnitTests
             Assert.IsTrue(elements[0].Id == "spanB");
         }
 
+        [Test]
+        public void GetElementsByClassName_WithDoubleUnderscore()
+        {
+            var elements = doc.QuerySelectorAll("div span.span-double__underscore");
+
+            Assert.IsTrue(elements.Count == 1);
+            Assert.IsTrue(elements[0].Id == "double-underscore");
+        }
+
         private static HtmlAgilityPack.HtmlDocument LoadHtml()
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
